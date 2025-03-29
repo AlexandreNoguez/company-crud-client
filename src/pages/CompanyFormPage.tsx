@@ -1,28 +1,71 @@
+import { Button, Paper, Box, Grid } from '@mui/material';
+import { useCompanyForm } from '../hooks/useCompanyForm';
+
+import CustomTypography from '../components/CustomTypography';
+import CustomTextField from '../components/CustomTextField';
+import MaskedTextField from '../components/MaskedTextField';
+import CustomGrid from '../components/CustomGrid';
+import { Controller } from 'react-hook-form';
+import { CompanyFormData } from '../schemas/companySchema';
+
 export default function CompanyFormPage() {
+  const { control, errors, handleSubmit, onSubmit, formFields } =
+    useCompanyForm();
+
   return (
-    <div>
-      <h1>Cadastro de Empresas</h1>
-      <p>Esta é a página de cadastro de empresas.</p>
-      <p>Você pode cadastrar uma nova empresa aqui.</p>
-      <form>
-        <div>
-          <label htmlFor="name">Nome:</label>
-          <input type="text" id="name" name="name" required />
-        </div>
-        <div>
-          <label htmlFor="cnpj">CNPJ:</label>
-          <input type="text" id="cnpj" name="cnpj" required />
-        </div>
-        <div>
-          <label htmlFor="fantasyName">Nome Fantasia:</label>
-          <input type="text" id="fantasyName" name="fantasyName" required />
-        </div>
-        <div>
-          <label htmlFor="address">Endereço:</label>
-          <input type="text" id="address" name="address" required />
-        </div>
-        <button type="submit">Cadastrar</button>
-      </form>
-    </div>
+    <Paper elevation={3} sx={{ p: 4, mt: 4 }}>
+      <CustomTypography preset="title" gutterBottom textAlign="center" mb={8}>
+        Cadastro de Empresas
+      </CustomTypography>
+
+      <Box
+        component="form"
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <CustomGrid>
+          {formFields.map((field, index) => (
+            <Grid key={`${field.name}-${index}`}>
+              {field.mask ? (
+                <MaskedTextField<CompanyFormData>
+                  name={field.name}
+                  label={field.label}
+                  control={control}
+                  mask={field.mask}
+                  errorMessage={errors[field.name]}
+                />
+              ) : (
+                <Controller
+                  name={field.name}
+                  control={control}
+                  render={({ field: controllerField }) => (
+                    <CustomTextField
+                      label={field.label}
+                      {...controllerField}
+                      errorMessage={errors[field.name]}
+                    />
+                  )}
+                />
+              )}
+            </Grid>
+          ))}
+        </CustomGrid>
+
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          sx={{ mt: 3 }}
+        >
+          Salvar Empresa
+        </Button>
+      </Box>
+    </Paper>
   );
 }
