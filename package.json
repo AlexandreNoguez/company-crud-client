@@ -21,8 +21,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.55.0",
-    "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.30.0",
+    "remask": "^1.2.2",
     "zod": "^3.24.2",
     "zustand": "^5.0.3"
   },
@@ -30,7 +30,6 @@
     "@eslint/js": "^9.21.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
-    "@types/react-input-mask": "^3.0.6",
     "@vitejs/plugin-react-swc": "^3.8.0",
     "eslint": "^9.23.0",
     "eslint-config-prettier": "^10.1.1",
