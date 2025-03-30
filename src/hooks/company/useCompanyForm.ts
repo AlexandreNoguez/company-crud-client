@@ -17,7 +17,7 @@ import {
 import { parseAddress } from '../../utils/formatStrings';
 import { useLoadingStore } from '../../stores/loading.store';
 import { useNavigate } from 'react-router-dom';
-import { ROUTE_EMPRESAS } from '../../constants/headerRoutes';
+import { ROUTE_COMPANY } from '../../constants/headerRoutes';
 import { handleAxiosError } from '../../utils/handleAxiosError';
 import {
   COMPANY_CREATED_SUCCESS,
@@ -103,7 +103,7 @@ export function useCompanyForm() {
         await createCompany(data);
         toast.success(COMPANY_CREATED_SUCCESS);
       }
-      navigate(ROUTE_EMPRESAS);
+      navigate(ROUTE_COMPANY);
     } catch (error) {
       handleAxiosError(
         error,

@@ -7,16 +7,16 @@ import { ThemeToggleButton } from './ThemeToggleButton';
 
 import { useBreakpoints } from '../hooks/useBreakpoints';
 import {
-  ROUTE_EMPRESAS,
-  ROUTE_EMPRESAS_CADASTRAR,
   ROUTE_HOME,
+  ROUTE_COMPANY,
+  ROUTE_COMPANY_CREATE,
 } from '../constants/headerRoutes';
 import CustomNavLink from './CustomNavLink';
 import CustomTypography from './CustomTypography';
 
 const navLinks = [
-  { label: 'Listar Empresas', to: ROUTE_EMPRESAS },
-  { label: 'Cadastrar Empresa', to: ROUTE_EMPRESAS_CADASTRAR },
+  { label: 'Listar Empresas', to: ROUTE_COMPANY },
+  { label: 'Cadastrar Empresa', to: ROUTE_COMPANY_CREATE },
 ];
 export default function Header() {
   const { isMobile } = useBreakpoints();
@@ -27,11 +27,9 @@ export default function Header() {
   return (
     <AppBar position="static" color="primary" elevation={1}>
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <CustomNavLink to={ROUTE_HOME}>
-          <CustomTypography variant="h6">
-            Projeto Empresas - KPMG
-          </CustomTypography>
-        </CustomNavLink>
+        <CustomTypography variant="h6" to={ROUTE_HOME}>
+          Projeto Empresas - KPMG
+        </CustomTypography>
 
         {isMobile ? (
           <>
@@ -52,7 +50,7 @@ export default function Header() {
           </>
         ) : (
           <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-            <CustomNavLink to={ROUTE_EMPRESAS} color="inherit">
+            <CustomNavLink to={ROUTE_COMPANY} color="inherit">
               Listar Empresas
             </CustomNavLink>
             <ThemeToggleButton />

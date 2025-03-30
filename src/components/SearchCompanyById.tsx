@@ -14,7 +14,7 @@ import {
 } from '../services/company/companyService';
 import { useCompanyStore } from '../stores/company.store';
 import { handleAxiosError } from '../utils/handleAxiosError';
-import { ROUTE_EMPRESAS } from '../constants/headerRoutes';
+import { ROUTE_COMPANY_CREATE } from '../constants/headerRoutes';
 import {
   COMPANY_NOT_FOUND,
   SEARCH_EMPTY_WARN,
@@ -65,7 +65,13 @@ export default function SearchCompanyById() {
       <CustomButton onClick={handleReset} color="secondary" sx={{ ml: 1 }}>
         Resetar
       </CustomButton>
-      <CustomNavLink component={Link} to={ROUTE_EMPRESAS} startIcon={<Add />}>
+      <CustomNavLink
+        component={Link}
+        to={ROUTE_COMPANY_CREATE}
+        startIcon={<Add />}
+        color="success"
+        variant="contained"
+      >
         Cadastrar Nova Empresa
       </CustomNavLink>
     </CustomGrid>

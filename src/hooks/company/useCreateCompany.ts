@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { useLoadingStore } from '../../stores/loading.store';
-import { ROUTE_EMPRESAS } from '../../constants/headerRoutes';
+import { ROUTE_COMPANY } from '../../constants/headerRoutes';
 import { createCompany } from '../../services/company/companyService';
 import { CompanyFormData } from '../../schemas/companySchema';
 import { handleAxiosError } from '../../utils/handleAxiosError';
@@ -22,7 +22,7 @@ export const useCreateCompany = () => {
     onSuccess: () => {
       toast.success(COMPANY_CREATED_SUCCESS);
       queryClient.invalidateQueries({ queryKey: ['companies'] });
-      navigate(ROUTE_EMPRESAS);
+      navigate(ROUTE_COMPANY);
     },
     onError: (error) => {
       setLoading(false);
