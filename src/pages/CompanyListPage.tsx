@@ -1,8 +1,69 @@
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
+import { Edit } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import { IconButton, Paper, TableCell } from '@mui/material';
+
+import { useFetchCompanies } from '../hooks/company/useFetchCompanies';
+import CustomTypography from '../components/CustomTypography';
+import { CustomExpandableTable } from '../components/CustomExpandableTable';
+
+import { Company } from '../@types/CompanyTypes';
+
 export default function CompanyListPage() {
-  return (
-    <div>
-      <h1>Lista de Empresas</h1>
-      <p>Esta é a página de listagem de empresas.</p>
-    </div>
+  const { data: companies = [] } = useFetchCompanies();
+  const navigate = useNavigate();
+
+  return !companies.length ? (
+    <Paper>
+      <CustomTypography variant="h6" textAlign="center" my={4}>
+        Nenhuma empresa cadastrada
+      </CustomTypography>
+    </Paper>
+  ) : (
+    <CustomExpandableTable<Company>
+      rows={companies}
+      columns={['ID', 'Nome', 'CNPJ']}
+      getRowId={(company) => company.id}
+      renderMainRow={(company) => (
+        <>
+          <TableCell>{company.id}</TableCell>
+          <TableCell>{company.name}</TableCell>
+          <TableCell>{company.cnpj}</TableCell>
+          <TableCell align="right">
+            <IconButton
+              aria-label="edit"
+              color="primary"
+              onClick={() => navigate(`/empresas/editar/${company.id}`)}
+            >
+              <Edit />
+            </IconButton>
+          </TableCell>
+        </>
+      )}
+      renderCollapseContent={(company) => (
+        <>
+          <CustomTypography variant="subtitle1" gutterBottom>
+            Detalhes
+          </CustomTypography>
+          <CustomTypography>
+            Nome Fantasia: {company.tradeName}
+          </CustomTypography>
+          <CustomTypography>Endereço: {company.address}</CustomTypography>
+          <CustomTypography>
+            Criada em:{' '}
+            {format(new Date(company.createdAt), 'dd/MM/yyyy HH:mm', {
+              locale: ptBR,
+            })}
+          </CustomTypography>
+          <CustomTypography>
+            Atualizada em:{' '}
+            {format(new Date(company.updatedAt), 'dd/MM/yyyy HH:mm', {
+              locale: ptBR,
+            })}
+          </CustomTypography>
+        </>
+      )}
+    />
   );
 }
