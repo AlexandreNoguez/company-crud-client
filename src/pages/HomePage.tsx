@@ -1,7 +1,6 @@
-// src/pages/HomePage.tsx
-import { Box, Paper } from "@mui/material";
+import { Box, Paper } from '@mui/material';
 
-import CustomTypography from "../components/CustomTypography";
+import CustomTypography from '../components/CustomTypography';
 
 export default function HomePage() {
   return (

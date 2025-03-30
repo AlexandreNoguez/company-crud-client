@@ -1,13 +1,30 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useParams } from 'react-router-dom';
 
 import { CompanyFormData, companySchema } from '../../schemas/companySchema';
 import { FormFieldsTypes } from '../../@types/FormFieldsTypes';
+
 import { findAddressByCep } from '../../services/viacepService';
-import { createCompany } from '../../services/company/companyService';
+import {
+  createCompany,
+  getCompanyById,
+  updateCompany,
+} from '../../services/company/companyService';
+
+import { parseAddress } from '../../utils/formatStrings';
+import { useLoadingStore } from '../../stores/loading.store';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { ROUTE_EMPRESAS } from '../../constants/headerRoutes';
+import { handleAxiosError } from '../../utils/handleAxiosError';
 
 export function useCompanyForm() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const setLoading = useLoadingStore((state) => state.setLoading);
+
   const {
     handleSubmit,
     formState: { errors },
@@ -36,8 +53,62 @@ export function useCompanyForm() {
     if (cep) fetchCep();
   }, [cep, setValue, setFocus]);
 
+  useEffect(() => {
+    const fetchCompany = async () => {
+      if (!id) return;
+
+      setLoading(true);
+      try {
+        const company = await getCompanyById(id);
+        if (!company) return;
+
+        setValue('name', company.name);
+        setValue('cnpj', company.cnpj);
+        setValue('tradeName', company.tradeName);
+
+        const addressFields = parseAddress(company.address);
+        setValue('cep', addressFields.cep || '');
+        setValue('logradouro', addressFields.logradouro || '');
+        setValue('numero', addressFields.numero || '');
+        setValue('complemento', addressFields.complemento || '');
+        setValue('bairro', addressFields.bairro || '');
+        setValue('municipio', addressFields.municipio || '');
+        setValue('estado', addressFields.estado || '');
+      } catch (error: unknown) {
+        toast.error('Erro ao carregar dados da empresa.');
+        handleAxiosError(
+          error,
+          'Um erro inesperado aconteceu, tente novamente mais tarde',
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCompany();
+  }, [id, setValue, setLoading]);
+
   const onSubmit = async (data: CompanyFormData) => {
-    await createCompany(data);
+    setLoading(true);
+    try {
+      if (id) {
+        await updateCompany(id, data);
+        toast.success('Empresa atualizada com sucesso!');
+      } else {
+        await createCompany(data);
+        toast.success(
+          'Empresa criada com sucesso! Você será redirecionado para a página de empresas.',
+        );
+      }
+      navigate(ROUTE_EMPRESAS);
+    } catch (error) {
+      handleAxiosError(
+        error,
+        `Erro ao ${id ? 'atualizar' : 'cadastrar'}  empresa.`,
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   const formFields: FormFieldsTypes[] = [
@@ -59,5 +130,6 @@ export function useCompanyForm() {
     control,
     onSubmit,
     formFields,
+    isEditing: Boolean(id),
   };
 }

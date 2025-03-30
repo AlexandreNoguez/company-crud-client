@@ -1,4 +1,3 @@
-// src/theme/getTheme.ts
 import { createTheme, PaletteMode } from '@mui/material';
 
 const commonSettings = {

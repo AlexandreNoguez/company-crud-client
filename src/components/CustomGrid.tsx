@@ -1,4 +1,3 @@
-// src/components/CustomGrid.tsx
 import { Grid, GridProps } from '@mui/material';
 
 export default function CustomGrid({

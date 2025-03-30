@@ -34,7 +34,7 @@ function App() {
           <AppRoutes />
         </Box>
       </Container>
-      <ToastContainer />
+      <ToastContainer draggable position="bottom-right" />
     </ThemeProvider>
   );
 }

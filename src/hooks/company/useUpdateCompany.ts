@@ -1,0 +1,34 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+import { CompanyFormData } from '../../schemas/companySchema';
+import { handleAxiosError } from '../../utils/handleAxiosError';
+import { updateCompany } from '../../services/company/companyService';
+import { useLoadingStore } from '../../stores/loading.store';
+import { ROUTE_EMPRESAS } from '../../constants/headerRoutes';
+
+export const useUpdateCompany = (id: string | number) => {
+  const queryClient = useQueryClient();
+  const setLoading = useLoadingStore((state) => state.setLoading);
+  const navigate = useNavigate();
+
+  return useMutation({
+    mutationFn: (data: CompanyFormData) => {
+      setLoading(true);
+      return updateCompany(id, data);
+    },
+    onSuccess: () => {
+      toast.success('Empresa atualizada com sucesso!');
+      queryClient.invalidateQueries({ queryKey: ['companies'] });
+      navigate(ROUTE_EMPRESAS);
+    },
+    onError: (error) => {
+      setLoading(false);
+      handleAxiosError(error, 'Erro ao atualizar empresa.');
+    },
+    onSettled: () => {
+      setLoading(false);
+    },
+  });
+};
