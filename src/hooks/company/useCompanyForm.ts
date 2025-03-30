@@ -3,9 +3,10 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { CompanyFormData, companySchema } from '../../schemas/companySchema';
-import { FormFieldsTypes } from '../../@types/FormFieldsTypes';
+
 import { findAddressByCep } from '../../services/viacepService';
-import { createCompany } from '../../services/company/companyService';
+import { useCreateCompany } from '../../hooks/company/useCreateCompany';
+import { FormFieldsTypes } from '../../@types/FormFieldsTypes';
 
 export function useCompanyForm() {
   const {
@@ -20,6 +21,7 @@ export function useCompanyForm() {
   });
 
   const cep = watch('cep');
+  const { mutate } = useCreateCompany();
 
   useEffect(() => {
     const fetchCep = async () => {
@@ -36,8 +38,8 @@ export function useCompanyForm() {
     if (cep) fetchCep();
   }, [cep, setValue, setFocus]);
 
-  const onSubmit = async (data: CompanyFormData) => {
-    await createCompany(data);
+  const onSubmit = (data: CompanyFormData) => {
+    mutate(data);
   };
 
   const formFields: FormFieldsTypes[] = [
