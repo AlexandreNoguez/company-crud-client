@@ -66,10 +66,10 @@ export default function CompanyFormPage() {
           variant="contained"
           color="primary"
           sx={{ mt: 3, minWidth: 160 }}
-          disabled={!isLoading}
-          startIcon={!isLoading ? <CustomCircularProgress /> : null}
+          disabled={isLoading}
+          startIcon={isLoading ? <CustomCircularProgress /> : null}
         >
-          {!isLoading ? 'Salvando...' : 'Salvar Empresa'}
+          {isLoading ? 'Salvando...' : 'Salvar Empresa'}
         </Button>
       </Box>
     </Paper>
