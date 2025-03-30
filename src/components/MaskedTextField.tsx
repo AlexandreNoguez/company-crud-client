@@ -5,8 +5,9 @@ import {
   FieldValues,
   Path,
 } from 'react-hook-form';
-import CustomTextField from './CustomTextField';
 import { mask as applyMask } from 'remask';
+
+import CustomTextField from './CustomTextField';
 
 interface MaskedTextFieldProps<T extends FieldValues> {
   name: keyof T;

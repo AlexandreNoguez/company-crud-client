@@ -1,20 +1,21 @@
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { Delete, Edit } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { Delete, Edit } from '@mui/icons-material';
 import { IconButton, Paper, TableCell } from '@mui/material';
 
 import { useBreakpoints } from '../hooks/useBreakpoints';
 import { useFetchCompanies } from '../hooks/company/useFetchCompanies';
+import { useSoftRemoveCompany } from '../hooks/company/useSoftRemoveCompany';
+import { useConfirmDialog } from '../hooks/modals/useConfirmDialog';
+
+import ConfirmDialog from '../components/ConfirmDialog';
 import CustomTypography from '../components/CustomTypography';
 import { CustomExpandableTable } from '../components/CustomExpandableTable';
 
 import { Company } from '../@types/CompanyTypes';
 import { toBrasiliaTime } from '../utils/dateFormater';
-import { useSoftRemoveCompany } from '../hooks/company/useSoftRemoveCompany';
-import { useConfirmDialog } from '../hooks/modals/useConfirmDialog';
-import ConfirmDialog from '../components/ConfirmDialog';
 import { REMOVE_CONFIRM, REMOVE_CONTENT } from '../constants/dialogMessages';
 
 export default function CompanyListPage() {
