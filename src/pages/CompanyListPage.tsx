@@ -4,15 +4,20 @@ import { Edit } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { IconButton, Paper, TableCell } from '@mui/material';
 
+import { useBreakpoints } from '../hooks/useBreakpoints';
 import { useFetchCompanies } from '../hooks/company/useFetchCompanies';
 import CustomTypography from '../components/CustomTypography';
 import { CustomExpandableTable } from '../components/CustomExpandableTable';
 
 import { Company } from '../@types/CompanyTypes';
+import { toBrasiliaTime } from '../utils/dateFormater';
 
 export default function CompanyListPage() {
   const { data: companies = [] } = useFetchCompanies();
+  const { isMobile } = useBreakpoints();
   const navigate = useNavigate();
+
+  const columns = isMobile ? ['ID', 'Nome'] : ['ID', 'Nome', 'CNPJ'];
 
   return !companies.length ? (
     <Paper>
@@ -23,13 +28,13 @@ export default function CompanyListPage() {
   ) : (
     <CustomExpandableTable<Company>
       rows={companies}
-      columns={['ID', 'Nome', 'CNPJ']}
+      columns={columns}
       getRowId={(company) => company.id}
       renderMainRow={(company) => (
         <>
           <TableCell>{company.id}</TableCell>
           <TableCell>{company.name}</TableCell>
-          <TableCell>{company.cnpj}</TableCell>
+          {!isMobile && <TableCell>{company.cnpj}</TableCell>}
           <TableCell align="right">
             <IconButton
               aria-label="edit"
@@ -52,13 +57,13 @@ export default function CompanyListPage() {
           <CustomTypography>Endereço: {company.address}</CustomTypography>
           <CustomTypography>
             Criada em:{' '}
-            {format(new Date(company.createdAt), 'dd/MM/yyyy HH:mm', {
+            {format(toBrasiliaTime(company.createdAt), 'dd/MM/yyyy HH:mm', {
               locale: ptBR,
             })}
           </CustomTypography>
           <CustomTypography>
             Atualizada em:{' '}
-            {format(new Date(company.updatedAt), 'dd/MM/yyyy HH:mm', {
+            {format(toBrasiliaTime(company.updatedAt), 'dd/MM/yyyy HH:mm', {
               locale: ptBR,
             })}
           </CustomTypography>
