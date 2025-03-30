@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { CEP_NOT_FOUND } from '../constants/toastMessages';
 
 interface IAddressResponse {
   logradouro: string;
@@ -20,12 +21,13 @@ export async function findAddressByCep(
       `${import.meta.env.VITE_VIACEP_URL}/${cleanedCep}/json/`,
     );
 
-    if (data.erro) return null;
+    if (data.erro) {
+      toast.warn(CEP_NOT_FOUND);
+    }
 
     return data;
   } catch (error) {
     console.error('Erro ao buscar endereço pelo CEP:', error);
-    toast.error('Erro ao buscar endereço. Verifique o CEP e tente novamente.');
     return null;
   }
 }
