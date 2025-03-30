@@ -63,3 +63,7 @@ export const updateCompany = async (
   const { data } = await api.patch(`/companies/${id}`, payload);
   return data;
 };
+
+export const softRemoveCompany = async (id: number) => {
+  await api.delete(`/companies/soft/${id}`);
+};

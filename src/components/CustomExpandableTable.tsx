@@ -57,7 +57,7 @@ export function CustomExpandableTable<T>({
             {columns.map((column) => (
               <TableCell key={column}>{column}</TableCell>
             ))}
-            <TableCell>Ações</TableCell>
+            <TableCell sx={{ textAlign: 'end' }}>Ações</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

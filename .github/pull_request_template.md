@@ -1,43 +1,43 @@
-## 📦 Descrição
+## 📦 Description
 
-Descreva aqui o que essa PR está entregando. Seja claro e objetivo.
+Describe here what this PR is delivering. Be clear and objective.
 
-## 🛠 Alterações principais
+## 🛠 Main Changes
 
-- [ ] Nova feature: ...
-- [ ] Refatoração: ...
-- [ ] Correção de bug: ...
-- [ ] Configuração: ...
-- [ ] Outros: ...
-
----
-
-## 🔍 Testes realizados
-
-Descreva os testes manuais/automáticos feitos para garantir que está tudo funcionando:
-
-- [ ] Testado no navegador
-- [ ] Testado com dados mockados
-- [ ] Teste automatizado adicionado
-- [ ] Integração com backend testada
+- [ ] New feature: ...
+- [ ] Refactoring: ...
+- [ ] Bug fix: ...
+- [ ] Configuration: ...
+- [ ] Others: ...
 
 ---
 
-## 📸 Screenshots (se aplicável)
+## 🔍 Tests Performed
 
-Adicione aqui imagens do funcionamento da feature, se possível.
+Describe the manual/automated tests performed to ensure everything is working:
+
+- [ ] Tested in the browser
+- [ ] Tested with mocked data
+- [ ] Automated test added
+- [ ] Backend integration tested
+
+---
+
+## 📸 Screenshots (if applicable)
+
+Add images of the feature in action here, if possible.
 
 ---
 
 ## 🚀 Checklist
 
-- [ ] Código revisado e funcionando
-- [ ] Testes aplicados ou verificados
-- [ ] Sem arquivos desnecessários ou console.logs
-- [ ] PR pronta para revisão
+- [ ] Code reviewed and working
+- [ ] Tests applied or verified
+- [ ] No unnecessary files or console.logs
+- [ ] PR ready for review
 
 ---
 
-## 📝 Informações adicionais
+## 📝 Additional Information
 
-Se houver algo importante ou pendente a mencionar, coloque aqui.
+If there is anything important or pending to mention, put it here.

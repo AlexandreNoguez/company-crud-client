@@ -19,6 +19,11 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { ROUTE_EMPRESAS } from '../../constants/headerRoutes';
 import { handleAxiosError } from '../../utils/handleAxiosError';
+import {
+  COMPANY_CREATED_SUCCESS,
+  COMPANY_EDIT_ERROR,
+  COMPANY_EDIT_SUCCESS,
+} from '../../constants/toastMessages';
 
 export function useCompanyForm() {
   const { id } = useParams();
@@ -75,7 +80,7 @@ export function useCompanyForm() {
         setValue('municipio', addressFields.municipio || '');
         setValue('estado', addressFields.estado || '');
       } catch (error: unknown) {
-        toast.error('Erro ao carregar dados da empresa.');
+        toast.error(COMPANY_EDIT_ERROR);
         handleAxiosError(
           error,
           'Um erro inesperado aconteceu, tente novamente mais tarde',
@@ -93,12 +98,10 @@ export function useCompanyForm() {
     try {
       if (id) {
         await updateCompany(id, data);
-        toast.success('Empresa atualizada com sucesso!');
+        toast.success(COMPANY_EDIT_SUCCESS);
       } else {
         await createCompany(data);
-        toast.success(
-          'Empresa criada com sucesso! Você será redirecionado para a página de empresas.',
-        );
+        toast.success(COMPANY_CREATED_SUCCESS);
       }
       navigate(ROUTE_EMPRESAS);
     } catch (error) {

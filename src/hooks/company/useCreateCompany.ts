@@ -7,6 +7,7 @@ import { ROUTE_EMPRESAS } from '../../constants/headerRoutes';
 import { createCompany } from '../../services/company/companyService';
 import { CompanyFormData } from '../../schemas/companySchema';
 import { handleAxiosError } from '../../utils/handleAxiosError';
+import { COMPANY_CREATED_SUCCESS } from '../../constants/toastMessages';
 
 export const useCreateCompany = () => {
   const queryClient = useQueryClient();
@@ -19,9 +20,7 @@ export const useCreateCompany = () => {
       return createCompany(data);
     },
     onSuccess: () => {
-      toast.success(
-        'Empresa criada com sucesso! Você será redirecionado para a página de empresas.',
-      );
+      toast.success(COMPANY_CREATED_SUCCESS);
       queryClient.invalidateQueries({ queryKey: ['companies'] });
       navigate(ROUTE_EMPRESAS);
     },
