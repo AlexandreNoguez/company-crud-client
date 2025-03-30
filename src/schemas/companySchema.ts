@@ -9,7 +9,7 @@ export const companySchema = z.object({
     .min(18, 'CNPJ inválido'),
   tradeName: z
     .string({ required_error: 'Nome Fantasia é obrigatório' })
-    .min(1, 'Nome precisa conter 2 caracteres'),
+    .min(1, 'Fantasia precisa conter 2 caracteres'),
 
   logradouro: z
     .string({ required_error: 'Logradouro é obrigatório' })
