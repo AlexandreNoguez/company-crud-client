@@ -1,6 +1,6 @@
 import { Controller } from 'react-hook-form';
 import { Button, Paper, Box, Grid } from '@mui/material';
-import { useCompanyForm } from '../hooks/company/useCompanyForm';
+import { useParams } from 'react-router-dom';
 
 import CustomGrid from '../components/CustomGrid';
 import CustomTextField from '../components/CustomTextField';
@@ -8,9 +8,13 @@ import CustomTypography from '../components/CustomTypography';
 import CustomCircularProgress from '../components/CustomCircularProgress';
 import MaskedTextField from '../components/MaskedTextField';
 import { CompanyFormData } from '../schemas/companySchema';
+import { useCompanyForm } from '../hooks/company/useCompanyForm';
 import { useLoadingStore } from '../stores/loading.store';
 
 export default function CompanyFormPage() {
+  const { id } = useParams(); // se tiver ID, está editando
+  const isEditMode = !!id;
+
   const { control, errors, handleSubmit, onSubmit, formFields } =
     useCompanyForm();
 
@@ -19,7 +23,7 @@ export default function CompanyFormPage() {
   return (
     <Paper elevation={3} sx={{ p: 4, mt: 4 }}>
       <CustomTypography preset="title" gutterBottom textAlign="center" mb={8}>
-        Cadastro de Empresas
+        {isEditMode ? 'Atualizar Empresa' : 'Cadastro de Empresas'}
       </CustomTypography>
 
       <Box
@@ -69,7 +73,13 @@ export default function CompanyFormPage() {
           disabled={isLoading}
           startIcon={isLoading ? <CustomCircularProgress /> : null}
         >
-          {isLoading ? 'Salvando...' : 'Salvar Empresa'}
+          {isLoading
+            ? isEditMode
+              ? 'Atualizando...'
+              : 'Salvando...'
+            : isEditMode
+              ? 'Alterar Empresa'
+              : 'Salvar Empresa'}
         </Button>
       </Box>
     </Paper>
