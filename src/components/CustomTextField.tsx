@@ -13,7 +13,6 @@ export default function CustomTextField({
 }: CustomTextFieldProps) {
   return (
     <TextField
-      defaultValue={''}
       size={size}
       fullWidth
       margin={margin}

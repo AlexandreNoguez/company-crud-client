@@ -29,7 +29,6 @@ export default function MaskedTextField<T extends FieldValues>({
       control={control}
       render={({ field }) => (
         <CustomTextField
-          defaultValue={field.value || ''}
           label={label}
           value={field.value || ''}
           onChange={(e) => {
