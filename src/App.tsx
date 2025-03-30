@@ -10,6 +10,8 @@ import Header from './components/Header';
 import AppRoutes from './routes/AppRoutes';
 import { useAppTheme } from './stores/useAppTheme';
 import getTheme from './themes';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { currentTheme } = useAppTheme();
@@ -32,6 +34,7 @@ function App() {
           <AppRoutes />
         </Box>
       </Container>
+      <ToastContainer />
     </ThemeProvider>
   );
 }
