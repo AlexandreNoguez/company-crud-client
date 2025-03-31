@@ -46,7 +46,7 @@ export default function CompanyListPage() {
   };
 
   return (
-    <Box>
+    <Box sx={{ mb: 8 }}>
       <SearchCompanyById />
       {!companies.length ? (
         <Paper>
