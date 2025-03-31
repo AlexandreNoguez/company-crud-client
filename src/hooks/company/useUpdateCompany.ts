@@ -1,12 +1,12 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { CompanyFormData } from '../../schemas/companySchema';
 import { handleAxiosError } from '../../utils/handleAxiosError';
 import { updateCompany } from '../../services/company/companyService';
 import { useLoadingStore } from '../../stores/loading.store';
-import { ROUTE_EMPRESAS } from '../../constants/headerRoutes';
+import { ROUTE_COMPANY } from '../../constants/headerRoutes';
 import { COMPANY_EDIT_SUCCESS } from '../../constants/toastMessages';
 
 export const useUpdateCompany = (id: string | number) => {
@@ -22,7 +22,7 @@ export const useUpdateCompany = (id: string | number) => {
     onSuccess: () => {
       toast.success(COMPANY_EDIT_SUCCESS);
       queryClient.invalidateQueries({ queryKey: ['companies'] });
-      navigate(ROUTE_EMPRESAS);
+      navigate(ROUTE_COMPANY);
     },
     onError: (error) => {
       setLoading(false);

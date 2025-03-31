@@ -3,8 +3,8 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-  Button,
 } from '@mui/material';
+import CustomButton from './CustomButton';
 
 interface ConfirmDialogProps {
   open: boolean;
@@ -26,12 +26,12 @@ export default function ConfirmDialog({
       <DialogTitle sx={{ textAlign: 'center' }}>{title}</DialogTitle>
       <DialogContent>{content}</DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="inherit">
+        <CustomButton onClick={onClose} color="inherit">
           Cancelar
-        </Button>
-        <Button onClick={onConfirm} color="error" variant="contained">
+        </CustomButton>
+        <CustomButton onClick={onConfirm} color="error" variant="contained">
           Confirmar
-        </Button>
+        </CustomButton>
       </DialogActions>
     </Dialog>
   );

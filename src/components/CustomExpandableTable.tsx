@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import {
   Table,
   TableBody,
@@ -10,8 +12,7 @@ import {
   Box,
   Paper,
 } from '@mui/material';
-import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
-import React, { useState } from 'react';
+
 import CustomTypography from './CustomTypography';
 
 interface CustomExpandableTableProps<T> {

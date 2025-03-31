@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useParams } from 'react-router-dom';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import { CompanyFormData, companySchema } from '../../schemas/companySchema';
 import { FormFieldsTypes } from '../../@types/FormFieldsTypes';
+import { CompanyFormData, companySchema } from '../../schemas/companySchema';
 
 import { findAddressByCep } from '../../services/viacepService';
 import {
@@ -15,9 +16,8 @@ import {
 
 import { parseAddress } from '../../utils/formatStrings';
 import { useLoadingStore } from '../../stores/loading.store';
-import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { ROUTE_EMPRESAS } from '../../constants/headerRoutes';
+import { ROUTE_COMPANY } from '../../constants/headerRoutes';
 import { handleAxiosError } from '../../utils/handleAxiosError';
 import {
   COMPANY_CREATED_SUCCESS,
@@ -103,7 +103,7 @@ export function useCompanyForm() {
         await createCompany(data);
         toast.success(COMPANY_CREATED_SUCCESS);
       }
-      navigate(ROUTE_EMPRESAS);
+      navigate(ROUTE_COMPANY);
     } catch (error) {
       handleAxiosError(
         error,

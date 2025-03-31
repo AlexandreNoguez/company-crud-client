@@ -1,12 +1,30 @@
 import { useQuery } from '@tanstack/react-query';
-import api from '../../libs/axios';
+import {
+  getCompanies,
+  getCompanyById,
+} from '../../services/company/companyService';
+import { useCompanyStore } from '../../stores/company.store';
 
-export const useFetchCompanies = () => {
+export const useFetchCompanies = (page = 1, limit = 10) => {
+  const setCompanies = useCompanyStore((state) => state.setCompanies);
+  const setPagination = useCompanyStore((state) => state.setPagination);
+
   return useQuery({
-    queryKey: ['companies'],
+    queryKey: ['companies', page, limit],
     queryFn: async () => {
-      const response = await api.get('/companies');
-      return response.data;
+      const response = await getCompanies(page, limit);
+
+      setCompanies(response.data);
+      setPagination(response.page, response.lastPage, response.total);
+      return response;
     },
+  });
+};
+
+export const useFetchCompanyById = (id?: string | number) => {
+  return useQuery({
+    queryKey: ['company', id],
+    queryFn: () => getCompanyById(id!),
+    enabled: !!id,
   });
 };

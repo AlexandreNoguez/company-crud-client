@@ -2,6 +2,7 @@ import api from '../../libs/axios';
 import { CompanyFormData } from '../../schemas/companySchema';
 import { omitFields } from '../../utils/omitFields';
 import { formatAddress } from '../../utils/formatStrings';
+import { CompanyPaginationResponse } from '../../@types/CompanyTypes';
 
 /**
  * @function createCompany
@@ -31,8 +32,14 @@ export const createCompany = async (formData: CompanyFormData) => {
  * @function getCompanies
  * @description Fetches all companies from the API.
  */
-export const getCompanies = async () => {
-  const { data } = await api.get('/companies');
+export const getCompanies = async (
+  page = 1,
+  limit = 10,
+): Promise<CompanyPaginationResponse> => {
+  const { data } = await api.get('/companies', {
+    params: { page, limit },
+  });
+
   return data;
 };
 

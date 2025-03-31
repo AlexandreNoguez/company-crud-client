@@ -1,12 +1,14 @@
-import { Controller } from 'react-hook-form';
-import { Button, Paper, Box, Grid } from '@mui/material';
 import { useParams } from 'react-router-dom';
+import { Controller } from 'react-hook-form';
+import { Paper, Box, Grid } from '@mui/material';
 
 import CustomGrid from '../components/CustomGrid';
+import CustomButton from '../components/CustomButton';
 import CustomTextField from '../components/CustomTextField';
+import MaskedTextField from '../components/MaskedTextField';
 import CustomTypography from '../components/CustomTypography';
 import CustomCircularProgress from '../components/CustomCircularProgress';
-import MaskedTextField from '../components/MaskedTextField';
+
 import { CompanyFormData } from '../schemas/companySchema';
 import { useCompanyForm } from '../hooks/company/useCompanyForm';
 import { useLoadingStore } from '../stores/loading.store';
@@ -65,7 +67,7 @@ export default function CompanyFormPage() {
           ))}
         </CustomGrid>
 
-        <Button
+        <CustomButton
           type="submit"
           variant="contained"
           color="primary"
@@ -80,7 +82,7 @@ export default function CompanyFormPage() {
             : isEditMode
               ? 'Alterar Empresa'
               : 'Salvar Empresa'}
-        </Button>
+        </CustomButton>
       </Box>
     </Paper>
   );

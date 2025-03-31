@@ -1,5 +1,5 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { softRemoveCompany } from '../../services/company/companyService';
 
 export function useSoftRemoveCompany() {
