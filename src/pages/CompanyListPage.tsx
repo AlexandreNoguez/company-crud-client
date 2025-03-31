@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { useNavigate } from 'react-router-dom';
 import { Delete, Edit } from '@mui/icons-material';
-import { Box, IconButton, Paper, TableCell } from '@mui/material';
+import { Box, IconButton, Pagination, Paper, TableCell } from '@mui/material';
 
 import { useBreakpoints } from '../hooks/useBreakpoints';
 import { useFetchCompanies } from '../hooks/company/useFetchCompanies';
@@ -21,8 +21,11 @@ import { useCompanyStore } from '../stores/company.store';
 import { REMOVE_CONFIRM, REMOVE_CONTENT } from '../constants/dialogMessages';
 
 export default function CompanyListPage() {
-  useFetchCompanies();
   const companies = useCompanyStore((state) => state.companies);
+  const { page, lastPage } = useCompanyStore((state) => state.pagination);
+  useFetchCompanies(page, 10);
+
+  const setPagination = useCompanyStore((state) => state.setPagination);
   const navigate = useNavigate();
 
   const { mutate: softRemove } = useSoftRemoveCompany();
@@ -36,6 +39,10 @@ export default function CompanyListPage() {
   const handleDelete = (id: number, name: string) => {
     setSelectedCompanyName(name);
     openConfirm(() => softRemove(id));
+  };
+
+  const handlePageChange = (newPage: number) => {
+    setPagination(newPage, lastPage, 0);
   };
 
   return (
@@ -118,6 +125,15 @@ export default function CompanyListPage() {
             title={REMOVE_CONFIRM(selectedCompanyName)}
             content={REMOVE_CONTENT}
           />
+          {lastPage > 1 ? (
+            <Pagination
+              count={lastPage}
+              page={page}
+              onChange={(_, value) => handlePageChange(value)}
+              color="primary"
+              sx={{ my: 4, display: 'flex', justifyContent: 'center' }}
+            />
+          ) : null}
         </>
       )}
     </Box>

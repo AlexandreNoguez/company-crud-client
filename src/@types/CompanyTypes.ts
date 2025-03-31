@@ -7,3 +7,10 @@ export type Company = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type CompanyPaginationResponse = {
+  data: Company[];
+  page: number;
+  lastPage: number;
+  total: number;
+};

@@ -1,5 +1,4 @@
 import {
-  Box,
   Drawer,
   List,
   ListItem,
@@ -7,7 +6,9 @@ import {
   ListItemText,
 } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
+
 import { ThemeToggleButton } from './ThemeToggleButton';
+import CustomGrid from './CustomGrid';
 
 interface MobileDrawerProps {
   open: boolean;
@@ -22,12 +23,7 @@ export default function MobileDrawer({
 }: MobileDrawerProps) {
   return (
     <Drawer anchor="bottom" open={open} onClose={onClose}>
-      <Box
-        sx={{ width: 250 }}
-        role="presentation"
-        onClick={onClose}
-        onKeyDown={onClose}
-      >
+      <CustomGrid role="presentation" onClick={onClose} onKeyDown={onClose}>
         <List>
           {links.map(({ label, to }) => (
             <ListItem key={to} disablePadding>
@@ -38,10 +34,10 @@ export default function MobileDrawer({
           ))}
 
           <ListItem>
-            <ThemeToggleButton />
+            <ThemeToggleButton sx={{ alignSelf: 'center' }} />
           </ListItem>
         </List>
-      </Box>
+      </CustomGrid>
     </Drawer>
   );
 }

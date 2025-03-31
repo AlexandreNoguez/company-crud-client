@@ -5,15 +5,18 @@ import {
 } from '../../services/company/companyService';
 import { useCompanyStore } from '../../stores/company.store';
 
-export const useFetchCompanies = () => {
+export const useFetchCompanies = (page = 1, limit = 10) => {
   const setCompanies = useCompanyStore((state) => state.setCompanies);
+  const setPagination = useCompanyStore((state) => state.setPagination);
 
   return useQuery({
-    queryKey: ['companies'],
+    queryKey: ['companies', page, limit],
     queryFn: async () => {
-      const data = await getCompanies();
-      setCompanies(data);
-      return data;
+      const response = await getCompanies(page, limit);
+
+      setCompanies(response.data);
+      setPagination(response.page, response.lastPage, response.total);
+      return response;
     },
   });
 };

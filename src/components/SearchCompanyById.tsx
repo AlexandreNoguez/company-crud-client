@@ -22,8 +22,8 @@ import {
 
 export default function SearchCompanyById() {
   const [inputValue, setInputValue] = useState('');
-  const setCompanies = useCompanyStore((s) => s.setCompanies);
-  const clearCompanies = useCompanyStore((s) => s.clearCompanies);
+  const setCompanies = useCompanyStore((state) => state.setCompanies);
+  const clearCompanies = useCompanyStore((state) => state.clearCompanies);
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,7 +44,9 @@ export default function SearchCompanyById() {
     setInputValue('');
     try {
       const allCompanies = await getCompanies();
-      setCompanies(allCompanies);
+      console.log('allCompanies', allCompanies);
+
+      setCompanies(allCompanies.data);
     } catch (error) {
       handleAxiosError(error, 'Erro ao restaurar empresas');
     }
