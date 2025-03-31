@@ -44,7 +44,6 @@ export default function SearchCompanyById() {
     setInputValue('');
     try {
       const allCompanies = await getCompanies();
-      console.log('allCompanies', allCompanies);
 
       setCompanies(allCompanies.data);
     } catch (error) {
