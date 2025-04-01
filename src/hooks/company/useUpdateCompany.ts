@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { CompanyFormData } from '../../schemas/companySchema';
-import { handleAxiosError } from '../../utils/handleAxiosError';
+import { handleAxiosError } from '../../helpers/handleAxiosError';
 import { updateCompany } from '../../services/company/companyService';
 import { useLoadingStore } from '../../stores/loading.store';
 import { ROUTE_COMPANY } from '../../constants/headerRoutes';
