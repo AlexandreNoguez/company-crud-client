@@ -6,7 +6,11 @@ export default function HomePage() {
   return (
     <Box mt={4}>
       <Paper elevation={3} sx={{ p: 4 }}>
-        <CustomTypography variant="h4" gutterBottom>
+        <CustomTypography
+          variant="h4"
+          gutterBottom
+          sx={{ textAlign: 'center', mb: 4 }}
+        >
           Bem-vindo ao Projeto de Cadastro de Empresas
         </CustomTypography>
 
