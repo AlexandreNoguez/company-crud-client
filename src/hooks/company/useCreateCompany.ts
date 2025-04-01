@@ -6,7 +6,7 @@ import { useLoadingStore } from '../../stores/loading.store';
 import { ROUTE_COMPANY } from '../../constants/headerRoutes';
 import { createCompany } from '../../services/company/companyService';
 import { CompanyFormData } from '../../schemas/companySchema';
-import { handleAxiosError } from '../../utils/handleAxiosError';
+import { handleAxiosError } from '../../helpers/handleAxiosError';
 import { COMPANY_CREATED_SUCCESS } from '../../constants/toastMessages';
 
 export const useCreateCompany = () => {

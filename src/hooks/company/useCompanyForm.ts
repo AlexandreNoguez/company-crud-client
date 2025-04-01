@@ -14,11 +14,11 @@ import {
   updateCompany,
 } from '../../services/company/companyService';
 
-import { parseAddress } from '../../utils/formatStrings';
+import { parseAddress } from '../../helpers/formatStrings';
 import { useLoadingStore } from '../../stores/loading.store';
 import { useNavigate } from 'react-router-dom';
 import { ROUTE_COMPANY } from '../../constants/headerRoutes';
-import { handleAxiosError } from '../../utils/handleAxiosError';
+import { handleAxiosError } from '../../helpers/handleAxiosError';
 import {
   COMPANY_CREATED_SUCCESS,
   COMPANY_EDIT_ERROR,

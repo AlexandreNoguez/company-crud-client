@@ -1,7 +1,7 @@
 import api from '../../libs/axios';
 import { CompanyFormData } from '../../schemas/companySchema';
-import { omitFields } from '../../utils/omitFields';
-import { formatAddress } from '../../utils/formatStrings';
+import { omitFields } from '../../helpers/omitFields';
+import { formatAddress } from '../../helpers/formatStrings';
 import { CompanyPaginationResponse } from '../../@types/CompanyTypes';
 
 /**

@@ -13,7 +13,7 @@ import {
   getCompanyById,
 } from '../services/company/companyService';
 import { useCompanyStore } from '../stores/company.store';
-import { handleAxiosError } from '../utils/handleAxiosError';
+import { handleAxiosError } from '../helpers/handleAxiosError';
 import { ROUTE_COMPANY_CREATE } from '../constants/headerRoutes';
 import {
   COMPANY_NOT_FOUND,
@@ -43,7 +43,7 @@ export default function SearchCompanyById() {
   const handleReset = async () => {
     setInputValue('');
     try {
-      const allCompanies = await getCompanies();
+      const allCompanies = await getCompanies(1, 7);
 
       setCompanies(allCompanies.data);
     } catch (error) {

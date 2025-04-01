@@ -16,7 +16,7 @@ import { CustomExpandableTable } from '../components/CustomExpandableTable';
 import SearchCompanyById from '../components/SearchCompanyById';
 
 import { Company } from '../@types/CompanyTypes';
-import { toBrasiliaTime } from '../utils/dateFormater';
+import { toBrasiliaTime } from '../helpers/dateFormater';
 import { useCompanyStore } from '../stores/company.store';
 import { REMOVE_CONFIRM, REMOVE_CONTENT } from '../constants/dialogMessages';
 
@@ -46,7 +46,7 @@ export default function CompanyListPage() {
   };
 
   return (
-    <Box>
+    <Box sx={{ mb: 8 }}>
       <SearchCompanyById />
       {!companies.length ? (
         <Paper>
