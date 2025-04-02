@@ -65,12 +65,13 @@ useConfirmDialog – controle de modais reutilizável.
 ## 🔧 Como Executar o Projeto
 
 ```bash
+git clone https://github.com/AlexandreNoguez/company-crud-client
 cd client
 cp .env.example .env
 npm install
 npm run dev
 ```
 
-### *OBS.: Configure as variáveis de ambiente do .env*
+### *OBS.: Configure as variáveis de ambiente do .env* e clone também o repositório <a href="https://github.com/AlexandreNoguez/company-crud-server">company-crud-server</a>
 
 O app estará acessível em: http://localhost:5173
