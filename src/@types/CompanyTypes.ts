@@ -1,7 +1,7 @@
 export type Company = {
   id: number;
   name: string;
-  cnpj: string;
+  taxId: string;
   tradeName: string;
   address: string;
   createdAt: string;

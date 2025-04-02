@@ -13,7 +13,7 @@ import { useConfirmDialog } from '../hooks/modals/useConfirmDialog';
 import ConfirmDialog from '../components/ConfirmDialog';
 import CustomTypography from '../components/CustomTypography';
 import { CustomExpandableTable } from '../components/CustomExpandableTable';
-import SearchCompanyById from '../components/SearchCompanyById';
+import SearchBar from '../components/SearchBar';
 
 import { Company } from '../@types/CompanyTypes';
 import { toBrasiliaTime } from '../helpers/dateFormater';
@@ -47,7 +47,7 @@ export default function CompanyListPage() {
 
   return (
     <Box sx={{ mb: 8 }}>
-      <SearchCompanyById />
+      <SearchBar />
       {!companies.length ? (
         <Paper>
           <CustomTypography variant="h6" textAlign="center" my={4}>
@@ -64,7 +64,7 @@ export default function CompanyListPage() {
               <>
                 <TableCell>{company.id}</TableCell>
                 <TableCell>{company.name}</TableCell>
-                {!isMobile && <TableCell>{company.cnpj}</TableCell>}
+                {!isMobile && <TableCell>{company.taxId}</TableCell>}
                 <TableCell align="right">
                   <IconButton
                     aria-label="edit"
