@@ -68,7 +68,7 @@ export function useCompanyForm() {
         if (!company) return;
 
         setValue('name', company.name);
-        setValue('cnpj', company.cnpj);
+        setValue('taxId', company.taxId);
         setValue('tradeName', company.tradeName);
 
         const addressFields = parseAddress(company.address);
@@ -116,7 +116,7 @@ export function useCompanyForm() {
 
   const formFields: FormFieldsTypes[] = [
     { label: 'Nome', name: 'name' },
-    { label: 'CNPJ', name: 'cnpj', mask: '99.999.999/9999-99' },
+    { label: 'CNPJ', name: 'taxId', mask: '99.999.999/9999-99' },
     { label: 'Nome Fantasia', name: 'tradeName' },
     { label: 'CEP', name: 'cep', mask: '99999-999' },
     { label: 'Logradouro', name: 'logradouro' },

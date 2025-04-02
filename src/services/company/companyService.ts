@@ -35,9 +35,10 @@ export const createCompany = async (formData: CompanyFormData) => {
 export const getCompanies = async (
   page = 1,
   limit = 10,
+  searchTerm?: string,
 ): Promise<CompanyPaginationResponse> => {
   const { data } = await api.get('/companies', {
-    params: { page, limit },
+    params: { page, limit, searchTerm },
   });
 
   return data;

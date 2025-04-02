@@ -8,10 +8,7 @@ import CustomButton from './CustomButton';
 import CustomNavLink from './CustomNavLink';
 import CustomTextField from './CustomTextField';
 
-import {
-  getCompanies,
-  getCompanyById,
-} from '../services/company/companyService';
+import { getCompanies } from '../services/company/companyService';
 import { useCompanyStore } from '../stores/company.store';
 import { handleAxiosError } from '../helpers/handleAxiosError';
 import { ROUTE_COMPANY_CREATE } from '../constants/headerRoutes';
@@ -19,11 +16,14 @@ import {
   COMPANY_NOT_FOUND,
   SEARCH_EMPTY_WARN,
 } from '../constants/toastMessages';
+import { useFetchCompanies } from '../hooks/company/useFetchCompanies';
 
-export default function SearchCompanyById() {
+export default function SearchBar() {
   const [inputValue, setInputValue] = useState('');
   const setCompanies = useCompanyStore((state) => state.setCompanies);
   const clearCompanies = useCompanyStore((state) => state.clearCompanies);
+
+  const { refetch, isFetching } = useFetchCompanies(1, 10, inputValue);
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,8 +32,7 @@ export default function SearchCompanyById() {
     }
 
     try {
-      const company = await getCompanyById(inputValue);
-      setCompanies([company]);
+      await refetch();
     } catch (error: unknown) {
       handleAxiosError(error, COMPANY_NOT_FOUND);
       clearCompanies();
@@ -55,12 +54,11 @@ export default function SearchCompanyById() {
     <CustomGrid component={'form'} onSubmit={handleSearch}>
       <CustomTextField
         sx={{ maxWidth: 320 }}
-        label="Buscar empresa por ID"
+        label="Buscar nome nome e fantasia"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
-        type="number"
       />
-      <CustomButton type="submit" sx={{ ml: 2 }}>
+      <CustomButton type="submit" sx={{ ml: 2 }} disabled={isFetching}>
         Buscar
       </CustomButton>
       <CustomButton onClick={handleReset} color="secondary" sx={{ ml: 1 }}>

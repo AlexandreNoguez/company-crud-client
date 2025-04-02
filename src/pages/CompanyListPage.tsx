@@ -3,7 +3,17 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { useNavigate } from 'react-router-dom';
 import { Delete, Edit } from '@mui/icons-material';
-import { Box, IconButton, Pagination, Paper, TableCell } from '@mui/material';
+import {
+  Box,
+  IconButton,
+  Pagination,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  tableCellClasses,
+  TableRow,
+} from '@mui/material';
 
 import { useBreakpoints } from '../hooks/useBreakpoints';
 import { useFetchCompanies } from '../hooks/company/useFetchCompanies';
@@ -13,7 +23,7 @@ import { useConfirmDialog } from '../hooks/modals/useConfirmDialog';
 import ConfirmDialog from '../components/ConfirmDialog';
 import CustomTypography from '../components/CustomTypography';
 import { CustomExpandableTable } from '../components/CustomExpandableTable';
-import SearchCompanyById from '../components/SearchCompanyById';
+import SearchBar from '../components/SearchBar';
 
 import { Company } from '../@types/CompanyTypes';
 import { toBrasiliaTime } from '../helpers/dateFormater';
@@ -47,7 +57,7 @@ export default function CompanyListPage() {
 
   return (
     <Box sx={{ mb: 8 }}>
-      <SearchCompanyById />
+      <SearchBar />
       {!companies.length ? (
         <Paper>
           <CustomTypography variant="h6" textAlign="center" my={4}>
@@ -64,7 +74,7 @@ export default function CompanyListPage() {
               <>
                 <TableCell>{company.id}</TableCell>
                 <TableCell>{company.name}</TableCell>
-                {!isMobile && <TableCell>{company.cnpj}</TableCell>}
+                {!isMobile && <TableCell>{company.taxId}</TableCell>}
                 <TableCell align="right">
                   <IconButton
                     aria-label="edit"
@@ -85,33 +95,57 @@ export default function CompanyListPage() {
             )}
             renderCollapseContent={(company) => (
               <>
-                <CustomTypography variant="subtitle1" gutterBottom>
-                  Detalhes
-                </CustomTypography>
-                <CustomTypography>
-                  Nome Fantasia: {company.tradeName}
-                </CustomTypography>
-                <CustomTypography>Endereço: {company.address}</CustomTypography>
-                <CustomTypography>
-                  Criada em:{' '}
-                  {format(
-                    toBrasiliaTime(company.createdAt),
-                    'dd/MM/yyyy HH:mm',
-                    {
-                      locale: ptBR,
+                <Table
+                  size="small"
+                  sx={{
+                    [`& .${tableCellClasses.root}`]: {
+                      borderBottom: 'none',
                     },
-                  )}
-                </CustomTypography>
-                <CustomTypography>
-                  Atualizada em:{' '}
-                  {format(
-                    toBrasiliaTime(company.updatedAt),
-                    'dd/MM/yyyy HH:mm',
-                    {
-                      locale: ptBR,
-                    },
-                  )}
-                </CustomTypography>
+                  }}
+                >
+                  <TableBody>
+                    <TableRow>
+                      <TableCell component="th" scope="row">
+                        Nome Fantasia
+                      </TableCell>
+                      <TableCell>{company.tradeName}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell component="th" scope="row">
+                        Endereço
+                      </TableCell>
+                      <TableCell>{company.address}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell component="th" scope="row">
+                        Criada em
+                      </TableCell>
+                      <TableCell>
+                        {format(
+                          toBrasiliaTime(company.createdAt),
+                          'dd/MM/yyyy HH:mm',
+                          {
+                            locale: ptBR,
+                          },
+                        )}
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell component="th" scope="row">
+                        Atualizada em
+                      </TableCell>
+                      <TableCell>
+                        {format(
+                          toBrasiliaTime(company.updatedAt),
+                          'dd/MM/yyyy HH:mm',
+                          {
+                            locale: ptBR,
+                          },
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
               </>
             )}
           />
