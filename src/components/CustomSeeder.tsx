@@ -6,7 +6,7 @@ import { Block } from '@mui/icons-material';
 export default function SeedButton() {
   const handleClick = async () => {
     try {
-      await api.post('http://localhost:3000/seed/companies');
+      await api.post('/seed/companies');
       toast.success(`Seed criada com sucesso: empresas inseridas!`);
     } catch (err) {
       console.error(err);
