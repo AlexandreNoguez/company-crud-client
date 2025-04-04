@@ -42,7 +42,7 @@ export default function SearchBar() {
   const handleReset = async () => {
     setInputValue('');
     try {
-      const allCompanies = await getCompanies(1, 7);
+      const allCompanies = await getCompanies(1, 10, '');
 
       setCompanies(allCompanies.data);
     } catch (error) {
@@ -54,7 +54,7 @@ export default function SearchBar() {
     <CustomGrid component={'form'} onSubmit={handleSearch}>
       <CustomTextField
         sx={{ maxWidth: 320 }}
-        label="Buscar nome nome e fantasia"
+        label="Buscar por nome ou nome fantasia"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
