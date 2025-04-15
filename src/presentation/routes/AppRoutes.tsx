@@ -11,7 +11,7 @@ import {
   ROUTE_COMPANY_CREATE,
   ROUTE_COMPANY_EDIT,
   ROUTE_NOT_FOUND,
-} from '../constants/headerRoutes';
+} from '../../shared/constants/headerRoutes';
 
 export default function AppRoutes() {
   return (

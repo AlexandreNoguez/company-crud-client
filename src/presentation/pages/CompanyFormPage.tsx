@@ -2,16 +2,16 @@ import { useParams } from 'react-router-dom';
 import { Controller } from 'react-hook-form';
 import { Paper, Box, Grid } from '@mui/material';
 
-import CustomGrid from '../components/CustomGrid';
-import CustomButton from '../components/CustomButton';
-import CustomTextField from '../components/CustomTextField';
-import MaskedTextField from '../components/MaskedTextField';
-import CustomTypography from '../components/CustomTypography';
-import CustomCircularProgress from '../components/CustomCircularProgress';
+import CustomGrid from '../../shared/components/CustomGrid';
+import CustomButton from '../../shared/components/CustomButton';
+import CustomTextField from '../../shared/components/CustomTextField';
+import MaskedTextField from '../../shared/components/MaskedTextField';
+import CustomTypography from '../../shared/components/CustomTypography';
+import CustomCircularProgress from '../../shared/components/CustomCircularProgress';
 
-import { CompanyFormData } from '../schemas/companySchema';
-import { useCompanyForm } from '../hooks/company/useCompanyForm';
-import { useLoadingStore } from '../stores/loading.store';
+import { CompanyFormData } from '../../shared/schemas/companySchema';
+import { useCompanyForm } from '../../shared/hooks/company/useCompanyForm';
+import { useLoadingStore } from '../../app/company/state/stores/loading.store';
 
 export default function CompanyFormPage() {
   const { id } = useParams(); // se tiver ID, está editando

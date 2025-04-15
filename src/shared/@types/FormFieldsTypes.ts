@@ -1,4 +1,4 @@
-import { CompanyFormData } from '../schemas/companySchema';
+import { CompanyFormData } from '../shared/schemas/companySchema';
 
 export type FormFieldsTypes = {
   label: string;

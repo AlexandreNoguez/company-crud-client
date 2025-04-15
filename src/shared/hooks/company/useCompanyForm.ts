@@ -4,18 +4,18 @@ import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { FormFieldsTypes } from '../../@types/FormFieldsTypes';
+import { FormFieldsTypes } from '../../../@types/FormFieldsTypes';
 import { CompanyFormData, companySchema } from '../../schemas/companySchema';
 
-import { findAddressByCep } from '../../services/viacepService';
+import { findAddressByCep } from '../../../infra/services/viacepService';
 import {
   createCompany,
   getCompanyById,
   updateCompany,
-} from '../../services/company/companyService';
+} from '../../../infra/services/company/companyService';
 
 import { parseAddress } from '../../helpers/formatStrings';
-import { useLoadingStore } from '../../stores/loading.store';
+import { useLoadingStore } from '../../../app/company/state/stores/loading.store';
 import { useNavigate } from 'react-router-dom';
 import { ROUTE_COMPANY } from '../../constants/headerRoutes';
 import { handleAxiosError } from '../../helpers/handleAxiosError';

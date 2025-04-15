@@ -15,20 +15,23 @@ import {
   TableRow,
 } from '@mui/material';
 
-import { useBreakpoints } from '../hooks/useBreakpoints';
-import { useFetchCompanies } from '../hooks/company/useFetchCompanies';
-import { useSoftRemoveCompany } from '../hooks/company/useSoftRemoveCompany';
-import { useConfirmDialog } from '../hooks/modals/useConfirmDialog';
+import { useBreakpoints } from '../../shared/hooks/useBreakpoints';
+import { useFetchCompanies } from '../../shared/hooks/company/useFetchCompanies';
+import { useSoftRemoveCompany } from '../../shared/hooks/company/useSoftRemoveCompany';
+import { useConfirmDialog } from '../../shared/hooks/modals/useConfirmDialog';
 
-import ConfirmDialog from '../components/ConfirmDialog';
-import CustomTypography from '../components/CustomTypography';
-import { CustomExpandableTable } from '../components/CustomExpandableTable';
-import SearchBar from '../components/SearchBar';
+import ConfirmDialog from '../../shared/components/ConfirmDialog';
+import CustomTypography from '../../shared/components/CustomTypography';
+import { CustomExpandableTable } from '../../shared/components/CustomExpandableTable';
+import SearchBar from '../../shared/components/SearchBar';
 
-import { Company } from '../@types/CompanyTypes';
-import { toBrasiliaTime } from '../helpers/dateFormater';
-import { useCompanyStore } from '../stores/company.store';
-import { REMOVE_CONFIRM, REMOVE_CONTENT } from '../constants/dialogMessages';
+import { Company } from '../../@types/CompanyTypes';
+import { toBrasiliaTime } from '../../shared/helpers/dateFormater';
+import { useCompanyStore } from '../../app/company/state/stores/company.store';
+import {
+  REMOVE_CONFIRM,
+  REMOVE_CONTENT,
+} from '../../shared/constants/dialogMessages';
 
 export default function CompanyListPage() {
   const companies = useCompanyStore((state) => state.companies);

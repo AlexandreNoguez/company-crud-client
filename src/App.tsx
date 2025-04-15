@@ -6,10 +6,10 @@ import {
   ThemeProvider,
 } from '@mui/material';
 
-import Header from './components/Header';
-import AppRoutes from './routes/AppRoutes';
-import { useAppTheme } from './stores/useAppTheme';
-import getTheme from './themes';
+import Header from './shared/components/Header';
+import AppRoutes from './presentation/routes/AppRoutes';
+import { useAppTheme } from './shared/hooks/useAppTheme';
+import getTheme from './presentation/themes';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

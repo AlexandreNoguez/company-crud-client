@@ -1,7 +1,8 @@
 import { toast } from 'react-toastify';
-import api from '../libs/axios';
-import CustomButton from './CustomButton';
 import { Block } from '@mui/icons-material';
+
+import CustomButton from './CustomButton';
+import api from '../../infra/http/axios';
 
 export default function SeedButton() {
   const handleClick = async () => {

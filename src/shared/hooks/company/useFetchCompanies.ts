@@ -2,8 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import {
   getCompanies,
   getCompanyById,
-} from '../../services/company/companyService';
-import { useCompanyStore } from '../../stores/company.store';
+} from '../../../infra/services/company/companyService';
+import { useCompanyStore } from '../../../app/company/state/stores/company.store';
 
 export const useFetchCompanies = (page = 1, limit = 10, searchTerm = '') => {
   const setCompanies = useCompanyStore((state) => state.setCompanies);
