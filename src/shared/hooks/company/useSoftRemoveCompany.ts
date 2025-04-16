@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { softRemoveCompany } from '../../../infra/services/company/companyService';
+import { softRemoveCompany } from '../../../infra/repositories/company/companyService';
 
 export function useSoftRemoveCompany() {
   const queryClient = useQueryClient();

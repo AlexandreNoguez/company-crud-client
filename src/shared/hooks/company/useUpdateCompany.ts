@@ -4,8 +4,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { CompanyFormData } from '../../schemas/companySchema';
 import { handleAxiosError } from '../../helpers/handleAxiosError';
-import { updateCompany } from '../../../infra/services/company/companyService';
-import { useLoadingStore } from '../../../app/company/state/stores/loading.store';
+import { updateCompany } from '../../../infra/repositories/company/companyService';
+import { useLoadingStore } from '../../../application/company/state/stores/loading.store';
 import { ROUTE_COMPANY } from '../../constants/headerRoutes';
 import { COMPANY_EDIT_SUCCESS } from '../../constants/toastMessages';
 

@@ -27,7 +27,7 @@ import SearchBar from '../../shared/components/SearchBar';
 
 import { Company } from '../../@types/CompanyTypes';
 import { toBrasiliaTime } from '../../shared/helpers/dateFormater';
-import { useCompanyStore } from '../../app/company/state/stores/company.store';
+import { useCompanyStore } from '../../application/company/state/stores/company.store';
 import {
   REMOVE_CONFIRM,
   REMOVE_CONTENT,

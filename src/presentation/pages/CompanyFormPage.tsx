@@ -11,7 +11,7 @@ import CustomCircularProgress from '../../shared/components/CustomCircularProgre
 
 import { CompanyFormData } from '../../shared/schemas/companySchema';
 import { useCompanyForm } from '../../shared/hooks/company/useCompanyForm';
-import { useLoadingStore } from '../../app/company/state/stores/loading.store';
+import { useLoadingStore } from '../../application/company/state/stores/loading.store';
 
 export default function CompanyFormPage() {
   const { id } = useParams(); // se tiver ID, está editando

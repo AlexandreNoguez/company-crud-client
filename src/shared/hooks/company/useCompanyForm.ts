@@ -7,15 +7,15 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FormFieldsTypes } from '../../../@types/FormFieldsTypes';
 import { CompanyFormData, companySchema } from '../../schemas/companySchema';
 
-import { findAddressByCep } from '../../../infra/services/viacepService';
+import { findAddressByCep } from '../../../infra/repositories/viacepService';
 import {
   createCompany,
   getCompanyById,
   updateCompany,
-} from '../../../infra/services/company/companyService';
+} from '../../../infra/repositories/company/companyService';
 
 import { parseAddress } from '../../helpers/formatStrings';
-import { useLoadingStore } from '../../../app/company/state/stores/loading.store';
+import { useLoadingStore } from '../../../application/company/state/stores/loading.store';
 import { useNavigate } from 'react-router-dom';
 import { ROUTE_COMPANY } from '../../constants/headerRoutes';
 import { handleAxiosError } from '../../helpers/handleAxiosError';

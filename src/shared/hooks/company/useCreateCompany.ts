@@ -2,9 +2,9 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { useLoadingStore } from '../../../app/company/state/stores/loading.store';
+import { useLoadingStore } from '../../../application/company/state/stores/loading.store';
 import { ROUTE_COMPANY } from '../../constants/headerRoutes';
-import { createCompany } from '../../../infra/services/company/companyService';
+import { createCompany } from '../../../infra/repositories/company/companyService';
 import { CompanyFormData } from '../../schemas/companySchema';
 import { handleAxiosError } from '../../helpers/handleAxiosError';
 import { COMPANY_CREATED_SUCCESS } from '../../constants/toastMessages';
