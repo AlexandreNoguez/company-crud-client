@@ -8,8 +8,8 @@ import CustomButton from './CustomButton';
 import CustomNavLink from './CustomNavLink';
 import CustomTextField from './CustomTextField';
 
-import { getCompanies } from '../../infra/services/company/companyService';
-import { useCompanyStore } from '../../app/company/state/stores/company.store';
+import { getCompanies } from '../services/company/companyService';
+import { useCompanyStore } from '../stores/company.store';
 import { handleAxiosError } from '../helpers/handleAxiosError';
 import { ROUTE_COMPANY_CREATE } from '../constants/headerRoutes';
 import {

@@ -1,8 +1,8 @@
-import { CompanyFormData } from '../../../shared/schemas/companySchema';
-import { omitFields } from '../../../shared/helpers/omitFields';
-import { formatAddress } from '../../../shared/helpers/formatStrings';
-import { CompanyPaginationResponse } from '../../../shared/@types/CompanyTypes';
-import api from '../../http/axios';
+import api from '../../libs/axios';
+import { CompanyFormData } from '../../schemas/companySchema';
+import { omitFields } from '../../helpers/omitFields';
+import { formatAddress } from '../../helpers/formatStrings';
+import { CompanyPaginationResponse } from '../../@types/CompanyTypes';
 
 /**
  * @function createCompany

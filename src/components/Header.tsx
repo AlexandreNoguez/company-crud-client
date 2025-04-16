@@ -13,7 +13,7 @@ import {
 } from '../constants/headerRoutes';
 import CustomNavLink from './CustomNavLink';
 import CustomTypography from './CustomTypography';
-import SeedButton from './CustomSeeder';
+// import SeedButton from './CustomSeeder';
 
 const navLinks = [
   { label: 'Listar Empresas', to: ROUTE_COMPANY },
@@ -51,7 +51,7 @@ export default function Header() {
           </>
         ) : (
           <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-            <SeedButton />
+            {/* <SeedButton /> */}
             <CustomNavLink to={ROUTE_COMPANY} color="inherit">
               Listar Empresas
             </CustomNavLink>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { CEP_NOT_FOUND } from '../../shared/constants/toastMessages';
+import { CEP_NOT_FOUND } from '../constants/toastMessages';
 
 interface IAddressResponse {
   logradouro: string;

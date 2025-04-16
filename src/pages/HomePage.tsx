@@ -1,6 +1,6 @@
 import { Box, Paper } from '@mui/material';
 
-import CustomTypography from '../../shared/components/CustomTypography';
+import CustomTypography from '../components/CustomTypography';
 
 export default function HomePage() {
   return (

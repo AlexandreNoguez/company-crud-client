@@ -2,14 +2,14 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+import { useLoadingStore } from '../../stores/loading.store';
+import { ROUTE_COMPANY } from '../../constants/headerRoutes';
+import { createCompany } from '../../services/company/companyService';
 import { CompanyFormData } from '../../schemas/companySchema';
 import { handleAxiosError } from '../../helpers/handleAxiosError';
-import { updateCompany } from '../../../infra/services/company/companyService';
-import { useLoadingStore } from '../../../app/company/state/stores/loading.store';
-import { ROUTE_COMPANY } from '../../constants/headerRoutes';
-import { COMPANY_EDIT_SUCCESS } from '../../constants/toastMessages';
+import { COMPANY_CREATED_SUCCESS } from '../../constants/toastMessages';
 
-export const useUpdateCompany = (id: string | number) => {
+export const useCreateCompany = () => {
   const queryClient = useQueryClient();
   const setLoading = useLoadingStore((state) => state.setLoading);
   const navigate = useNavigate();
@@ -17,16 +17,19 @@ export const useUpdateCompany = (id: string | number) => {
   return useMutation({
     mutationFn: (data: CompanyFormData) => {
       setLoading(true);
-      return updateCompany(id, data);
+      return createCompany(data);
     },
     onSuccess: () => {
-      toast.success(COMPANY_EDIT_SUCCESS);
+      toast.success(COMPANY_CREATED_SUCCESS);
       queryClient.invalidateQueries({ queryKey: ['companies'] });
       navigate(ROUTE_COMPANY);
     },
     onError: (error) => {
       setLoading(false);
-      handleAxiosError(error, 'Erro ao atualizar empresa.');
+      handleAxiosError(
+        error,
+        'Erro ao criar empresa. Verifique os dados e tente novamente.',
+      );
     },
     onSettled: () => {
       setLoading(false);

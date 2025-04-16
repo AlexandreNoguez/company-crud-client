@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Company } from '../../@types/CompanyTypes';
+import { Company } from '../@types/CompanyTypes';
 
 type CompanyStore = {
   companies: Company[];
